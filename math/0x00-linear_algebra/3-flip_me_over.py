@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 import numpy as np
 
+result = [[0, 0, 0], [0, 0, 0]]
 def matrix_transpose(matrix):
-    matrix_T = np.transpose(matrix)
-    return matrix_T
+    result = [[matrix[j][i] for j in range(len(matrix))] for i in range(len(matrix[0]))]
+    return result
