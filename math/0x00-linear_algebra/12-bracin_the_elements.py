@@ -5,4 +5,5 @@ import numpy as np
 
 def np_elementwise(mat1, mat2):
     """function elementwise"""
-    return mat1 + mat2, mat1 - mat2, mat1 * mat2, mat1 / mat2
+    result = mat1 + mat2, mat1 - mat2, mat1 * mat2, mat1 / mat2
+    return result
