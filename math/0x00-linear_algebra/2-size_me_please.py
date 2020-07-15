@@ -3,5 +3,8 @@ import numpy as np
 
 
 def matrix_shape(matrix):
-    matrix_shape = np.shape(matrix)
-    return (matrix_shape)
+    if len(matrix[0][0]) == list:
+        mat_shape = [len(matrix), len(matrix[0]), len(matrix[0][0])]
+    else:
+        mat_shape = [len(matrix), len(matrix[0])]
+    return mat_shape
