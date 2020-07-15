@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
+"""concatenates two matrices along a specific axis"""
 
 
 def cat_matrices2D(mat1, mat2, axis=0):
+    """concatenates two matrices along"""
     # copy of the two matrix
     a = [row[:] for row in mat1]
     b = [row[:] for row in mat2]
