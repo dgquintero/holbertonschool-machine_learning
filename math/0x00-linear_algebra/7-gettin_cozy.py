@@ -2,10 +2,10 @@
 
 
 def cat_matrices2D(mat1, mat2, axis=0):
-    # a copy
+    # copy of the two matrix
     a = [row[:] for row in mat1]
     b = [row[:] for row in mat2]
-    # know what is the size of the columns and rows
+    # size of columns and rows
     mat1m = len(mat1)
     mat1n = len(mat1[0])
     mat2m = len(mat2)
