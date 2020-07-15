@@ -7,8 +7,8 @@ def cat_matrices2D(mat1, mat2, axis=0):
     print(axis)
     if axis == 0:
         new_array.append(mat2[0])
-    if axis == 1:
+    elif axis == 1:
         for i in range(len(mat1[0])):
             new_array[i].append(mat2[i][0])
-    #new_array = np.concatenate((mat1, mat2), axis)
+    # new_array = np.concatenate((mat1, mat2), axis)
     return new_array

@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 
 import numpy as np
+
+
 np_transpose = __import__('11-the_western_exchange').np_transpose
 
 mat1 = np.array([1, 2, 3, 4, 5, 6])
