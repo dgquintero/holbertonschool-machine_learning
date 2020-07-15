@@ -16,4 +16,5 @@ def add_matrices2D(mat1, mat2):
             for j in range(len(mat1[0])):
                 result[i][j] = mat1[i][j] + mat2[i][j]
         return result
-    return None
+    else:
+        return None
