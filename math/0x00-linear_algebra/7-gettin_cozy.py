@@ -14,11 +14,13 @@ def cat_matrices2D(mat1, mat2, axis=0):
     mat2n = len(mat2[0])
 
     new_array = []
-    if (axis == 0) and (mat1n == mat1n):
-        new_array = a + b
-    elif (axis == 1) and (mat1m == mat2m):
+    if axis == 0:
+        if mat1n != mat2n:
+            return None
+        return (a + b)
+    if axis == 1:
+        if mat1m != mat2m:
+            return None
         for i in range(len(mat1[0])):
             new_array.append(a[i] + b[i])
-    else:
-        return None
-    return new_array
+        return new_array
