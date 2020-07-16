@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
-
+"""dotproduct with 2 matrix"""
 
 def mat_mul(mat1, mat2):
+    """dotproduct with 2 matrix"""
     # size of columns and rows
     mat1m = len(mat1)
     mat1n = len(mat1[0])
