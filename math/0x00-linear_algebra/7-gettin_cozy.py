@@ -21,6 +21,4 @@ def cat_matrices2D(mat1, mat2, axis=0):
     if axis == 1:
         if mat1m != mat2m:
             return None
-        for i in range(len(mat1[0])):
-            new_array.append(a[i] + b[i])
-        return new_array
+        return [a + b for a, b in zip(mat1, mat2)]
