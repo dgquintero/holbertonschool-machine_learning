@@ -6,13 +6,10 @@ def matrix_shape(matrix):
     """function get the shape of a matrix"""
     mat_shape = []
 
-    if type(matrix) != list:
-        return None
-    if matrix is None:
-        return mat_shape
-    if type(matrix[0]) == list:
-        mat_shape = [len(matrix), len(matrix[0])]
-        if type(matrix[0][0]) == list:
-            mat_shape.append(len(matrix[0][0]))
-        return mat_shape
+    while type(matrix) == list:
+        mat_shape.append(len(matrix))
+        if type(matrix[0]) == list:
+            matrix = matrix[0]
+        else:
+            break
     return mat_shape
