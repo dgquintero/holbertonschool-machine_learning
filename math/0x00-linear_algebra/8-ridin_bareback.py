@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """dotproduct with 2 matrix"""
 
+
 def mat_mul(mat1, mat2):
     """dotproduct with 2 matrix"""
     # size of columns and rows
@@ -17,6 +18,6 @@ def mat_mul(mat1, mat2):
                 # iterating by rows of mat2
                 for k in range(len(mat2)):
                     result[i][j] += mat1[i][k] * mat2[k][j]
+        return result
     else:
         result = None
-    return result
