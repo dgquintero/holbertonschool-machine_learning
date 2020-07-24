@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
 """function def summation_i_squared"""
+import math
 
 
 def summation_i_squared(n):
     """function def summation_i_squared"""
-    if type(n) == int:
-        sum = 0
-        for i in range(n):
-            sum += (i + 1) ** 2
-        return sum
+    if (n == 0):
+        return 0
+    elif type(n) == int:
+        return (n ** 2) + summation_i_squared(n - 1)
     else:
         None
