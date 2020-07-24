@@ -2,5 +2,5 @@
 
 summation_i_squared = __import__('9-sum_total').summation_i_squared
 
-n = "ddjjdf"
+n = 345
 print(summation_i_squared(n))
