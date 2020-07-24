@@ -11,7 +11,6 @@ def summation_i_squared(n):
     #    return (int((n ** 2) + summation_i_squared(n - 1)))
     # else:
     #    None
-    if type(n) is int or n > 0:
-        return int((n * (1 + n)) * (2 * n + 1) / 6)
-    else:
+    if type(n) is not int or n < 1:
         return None
+    return int((n * (1 + n)) * (2 * n + 1) / 6)
