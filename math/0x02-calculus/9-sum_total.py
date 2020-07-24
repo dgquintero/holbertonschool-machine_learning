@@ -6,7 +6,7 @@ def summation_i_squared(n):
     """function def summation_i_squared"""
     if (n == 0):
         return 0
-    elif type(n) == int:
+    elif type(n) is int:
         return (int(n ** 2) + summation_i_squared(n - 1))
     else:
         None
