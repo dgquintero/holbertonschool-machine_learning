@@ -8,7 +8,7 @@ def poly_derivative(poly):
         return None
     elif len(poly) == 1:
         return [0]
-    elif type(poly) == list:
+    else:
         deriv_poly = [poly[i] * i for i in range(1, len(poly))]
         if deriv_poly == 0:
             return ([0])
