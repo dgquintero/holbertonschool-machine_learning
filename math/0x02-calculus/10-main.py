@@ -2,5 +2,5 @@
 
 poly_derivative = __import__('10-matisse').poly_derivative
 
-poly = [0, 4]
+poly = [1]
 print(poly_derivative(poly))

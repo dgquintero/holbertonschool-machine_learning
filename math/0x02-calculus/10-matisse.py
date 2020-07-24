@@ -2,10 +2,12 @@
 
 
 def poly_derivative(poly):
-    if type(poly) == list:
-        deriv_poly = [poly[i] * i for i in range(1, len(poly))]
-        if deriv_poly != 0:
-            return deriv_poly
-        return ([0])
-    else:
+    if type(poly) is not list or len(poly) == 0:
         return None
+    elif len(poly) == 1:
+        return [0]
+    elif type(poly) == list:
+        deriv_poly = [poly[i] * i for i in range(1, len(poly))]
+        if deriv_poly == 0:
+            return ([0])
+        return deriv_poly
