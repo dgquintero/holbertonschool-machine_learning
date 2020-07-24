@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 """function def summation_i_squared"""
-import math
 
 
 def summation_i_squared(n):
