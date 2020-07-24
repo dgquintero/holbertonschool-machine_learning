@@ -2,6 +2,7 @@
 
 
 def poly_derivative(poly):
+    """Calculates the derivative of a polynomial"""
     if type(poly) is not list or len(poly) == 0:
         return None
     elif len(poly) == 1:
