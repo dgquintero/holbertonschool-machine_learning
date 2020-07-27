@@ -6,8 +6,6 @@ def poly_integral(poly, C=0):
     """Calculates the integral of a polynomial"""
     if type(poly) is not list or type(C) is not int or len(poly) == 0:
         return None
-    elif len(poly) == 1:
-        return [0]
     elif poly == [0]:
         return [C]
     else:
