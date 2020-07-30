@@ -1,7 +1,12 @@
 #!/usr/bin/env python3
+"""class Exponential that represents a exponential distribution"""
+
 
 class Exponential():
+    """ Class Exponential that calls methos CDF PDF """
+
     def __init__(self, data=None, lambtha=1.):
+        """class constructor to call"""
         self.lambtha = float(lambtha)
         if data is None:
             if lambtha <= 0:
