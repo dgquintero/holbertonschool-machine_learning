@@ -5,6 +5,8 @@
 class Exponential():
     """ Class Exponential that calls methos CDF PDF """
 
+    e = 2.7182818285
+
     def __init__(self, data=None, lambtha=1.):
         """class constructor to call"""
         self.lambtha = float(lambtha)
@@ -19,3 +21,10 @@ class Exponential():
             if len(data) < 2:
                 raise ValueError("data must contain multiple values")
             self.lambtha = (1 / (sum(data) / len(data)))
+
+    def pdf(self, x):
+        """ Method that returns the Probability Density Function"""
+        if x < 0:
+            return 0
+        pdf_p = self.lambtha * Exponential.e**(-(x * self.lambtha))
+        return pdf_p
