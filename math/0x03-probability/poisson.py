@@ -33,3 +33,14 @@ class Poisson():
             / factorial_k
 
         return pmf_p
+
+    def cdf(self, k):
+        """ Poisson probability cdf """
+        k = int(k)
+        if k < 0:
+            return 0
+        cdf_p = 0
+        else:
+            for i in range(k + 1):
+                cdf_p += self.pmf(i)
+        return cdf_p
