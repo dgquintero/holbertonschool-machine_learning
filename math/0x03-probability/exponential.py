@@ -34,4 +34,4 @@ class Exponential():
         if x < 0:
             return 0
         cdf_p = 1 - Exponential.e**(-(x * self.lambtha))
-        return pdf_p
+        return cdf_p
