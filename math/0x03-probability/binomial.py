@@ -30,7 +30,9 @@ class Binomial():
             self.p = mean / self.n
 
     def pmf(self, k):
+        """ Method that returns the pmf"""
         pass
 
     def cdf(self, k):
+        """ Method that returns the Cumulative Distribution Function"""
         pass
