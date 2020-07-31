@@ -42,5 +42,3 @@ class Normal():
         part_2 = ((x - self.mean) ** 2) / (2 * (self.stddev ** 2))
 
         return part_1 * Normal.e ** (-part_2)
-
-        
