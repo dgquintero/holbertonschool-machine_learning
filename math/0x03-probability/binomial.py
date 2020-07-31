@@ -18,16 +18,17 @@ class Binomial():
         else:
             if type(data) is not list:
                 raise TypeError("data must bea list")
-            if len(data) < 2:
+            elif len(data) < 2:
                 raise ValueError("data must contain multiple values")
-            mean = sum(data) / len(data)
-            v = 0
-            for i in range(len(data)):
-                v += ((data[i] - mean) ** 2)
-            variance = v / len(data)
-            self.p = 1 - (variance / mean)
-            self.n = int(round(mean / self.p))
-            self.p = mean / self.n
+            else:
+                mean = sum(data) / len(data)
+                v = 0
+                for i in range(len(data)):
+                    v += ((data[i] - mean) ** 2)
+                variance = v / len(data)
+                self.p = 1 - (variance / mean)
+                self.n = int(round(mean / self.p))
+                self.p = mean / self.n
 
     def pmf(self, k):
         """ Method that returns the pmf"""
