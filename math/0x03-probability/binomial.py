@@ -51,4 +51,11 @@ class Binomial():
 
     def cdf(self, k):
         """ Method that returns the Cumulative Distribution Function"""
-        pass
+        k = int(k)
+        if k < 0:
+            return 0
+        else:
+            cdf = 0
+            for i in range(k + 1):
+                cdf += self.pmf(i)
+            return cdf
