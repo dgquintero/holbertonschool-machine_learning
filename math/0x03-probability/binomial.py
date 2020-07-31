@@ -37,7 +37,7 @@ class Binomial():
             return 0
         factor_k = 1
         factor_n = 1
-        factor_nk = 1        
+        factor_nk = 1
         for i in range(1, k + 1):
                 factor_k *= i
         for i in range(1, self.n + 1):
@@ -48,7 +48,6 @@ class Binomial():
         prob = (self.p ** k) * ((1 - self.p) ** (self.n - k))
         pmf = comb * prob
         return pmf
-
 
     def cdf(self, k):
         """ Method that returns the Cumulative Distribution Function"""
