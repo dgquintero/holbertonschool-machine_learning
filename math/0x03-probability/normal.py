@@ -6,6 +6,7 @@ class Normal():
     """ Class Normal"""
 
     e = 2.7182818285
+    pi = 3.1415926536
 
     def __init__(self, data=None, mean=0., stddev=1.):
         """class constructor to call"""
@@ -34,3 +35,12 @@ class Normal():
     def x_value(self, z):
         """ instance method to calculate the z value"""
         return ((self.stddev * z) + self.mean)
+
+    def pdf(self, x):
+        """ Method that returns the Probability Density Function"""
+        part_1 = 1 / (self.stddev * ((2 * Normal.pi) ** 0.5))
+        part_2 = ((x - self.mean) ** 2) / (2 * (self.stddev ** 2))
+
+        return part_1 * Normal.e ** (-part_2)
+
+        
