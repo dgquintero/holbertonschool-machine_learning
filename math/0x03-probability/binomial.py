@@ -27,4 +27,10 @@ class Binomial():
             variance = v / len(data)
             self.p = 1 - (variance / mean)
             self.n = int(round(mean / self.p))
-            self. p = mean / self.n
+            self.p = mean / self.n
+
+    def pmf(self, k):
+        pass
+
+    def cdf(self, k):
+        pass
