@@ -26,3 +26,11 @@ class Normal():
                 x = (data[i] - self.mean) ** 2
                 sigma += x
             self.stddev = (sigma / len(data)) ** (1 / 2)
+
+    def z_score(self, x):
+        """ instance method to calculate the z value"""
+        return ((x - self.mean) / self.stddev)
+
+    def x_value(self, z):
+        """ instance method to calculate the z value"""
+        return ((self.stddev * z) + self.mean)
