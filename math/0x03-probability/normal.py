@@ -42,3 +42,12 @@ class Normal():
         part_2 = ((x - self.mean) ** 2) / (2 * (self.stddev ** 2))
 
         return part_1 * Normal.e ** (-part_2)
+
+    def cdf(self, x):
+        """ Method that returns the Cumulative Distribution Function"""
+        xf = (x - self.mean) / (self.stddev * (2 ** (0.5)))
+        erf = (2 / (Normal.pi ** (0.5)) * (xf - ((xf ** 3) / 3) +
+                                                ((xf ** 5) / 10) -
+                                                ((xf ** 7) / 42) +
+                                                ((xf ** 9) / 216)))
+        return ((1 + erf) / 2)
