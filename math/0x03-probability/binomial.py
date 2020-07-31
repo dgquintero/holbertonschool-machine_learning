@@ -12,17 +12,20 @@ class Binomial():
 
         if data is None:
             if self.n <= 0:
-                raise ValueError("n must be a postive value")
+                raise ValueError("n must be a positive value")
             elif self.p <= 0 or self.p >= 1:
-                raise ValueError("p must be grater tha 0 and less than 1")
+                raise ValueError("p must be greater tha 0 and less than 1")
         else:
             if type(data) is not list:
-                raise TypeError("data must bea list")
+                raise TypeError("data must be a list")
             elif len(data) < 2:
                 raise ValueError("data must contain multiple values")
             else:
                 mean = sum(data) / len(data)
-                variance = sum([((x - mean) ** 2) for x in data]) / len(data)
+                v = 0
+                for i in range(len(data)):
+                    v += ((data[i] - mean) ** 2)
+                variance = v / len(data)
                 self.p = 1 - (variance / mean)
                 self.n = int(round(mean / self.p))
                 self.p = mean / self.n
