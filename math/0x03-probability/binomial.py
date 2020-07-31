@@ -31,7 +31,24 @@ class Binomial():
 
     def pmf(self, k):
         """ Method that returns the pmf"""
-        pass
+        k = int(k)
+
+        if k > self.n or k < 0:
+            return 0
+        factor_k = 1
+        factor_n = 1
+        factor_nk = 1        
+        for i in range(1, k + 1):
+                factor_k *= i
+        for i in range(1, self.n + 1):
+                factor_n *= i
+        for f in range(1, (self.n - k) + 1):
+                factor_nk *= f
+        comb = factor_n / (factor_nk * factor_k)
+        prob = (self.p ** k) * ((1 - self.p) ** (self.n - k))
+        pmf = comb * prob
+        return pmf
+
 
     def cdf(self, k):
         """ Method that returns the Cumulative Distribution Function"""
