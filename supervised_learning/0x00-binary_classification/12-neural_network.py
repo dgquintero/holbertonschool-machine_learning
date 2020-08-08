@@ -93,7 +93,8 @@ class NeuralNetwork():
             Arguments:
                 X: input data shape(nx, m)
                 Y: "true" labels vector of shape (1, number of examples)
-            Returns: the neuron’s prediction and the cost of the network, respectively
+            Returns: the neuron’s prediction and the cost of the network
+            respectively
         """
         self.forward_prop(X)
         cost = self.cost(Y, self.__A2)
