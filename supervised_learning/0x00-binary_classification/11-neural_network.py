@@ -71,12 +71,13 @@ class NeuralNetwork():
         return self.__A1, self.__A2
 
     def cost(self, Y, A):
-        """ 
-        Public method that calculates the cost of the 
+        """
+        Public method that calculates the cost of the
         model using logistic regression
             Arguments:
                 Y: "true" labels vector of shape (1, number of examples)
-                A: The sigmoid output of the activation of each example, of shape (1, number of examples)
+                A: The sigmoid output of the activation of
+                each example of shape (1, number of examples)
             Returns: The cost
         """
         m = Y.shape[1]
