@@ -122,13 +122,13 @@ class NeuralNetwork():
 
         # Update rule for each parameter
         self.__W1 = self.__W1 - (alpha * dW1)
-        self.__b1 = self.__b1 - (alpha * db1)      
+        self.__b1 = self.__b1 - (alpha * db1)
         self.__W2 = self.__W2 - (alpha * dW2).T
         self.__b2 = self.__b2 - (alpha * db2)
 
     def train(self, X, Y, iterations=5000, alpha=0.05):
         """
-        Trains the  neural network updates __W1, __b1, __A1, __W2, __b2, and __A2
+        Trains neural network updates __W1, __b1, __A1, __W2, __b2, __A2
             Arguments:
                 X: input data shape(nx, m)
                 Y: "true" labels vector of shape (1, number of examples)
