@@ -156,5 +156,5 @@ class DeepNeuralNetwork():
         for i in range(iterations):
             cache = self.__cache
             self.forward_prop(X)
-            self.gradient_descent(X, cache, alpha)
+            self.gradient_descent(Y, cache, alpha)
         return self.evaluate(X, Y)
