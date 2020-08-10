@@ -154,7 +154,7 @@ class DeepNeuralNetwork():
         if alpha < 0:
             raise ValueError("alpha must be positive")
         for i in range(iterations):
-            cache = self.__cache
+            cache = self.___cache
             self.forward_prop(X)
             self.gradient_descent(X, cache, alpha)
         return self.evaluate(X, Y)
