@@ -134,7 +134,8 @@ class DeepNeuralNetwork():
             self.__weights['b'+str(i)] = self.__weights['b'+str(i)] -\
                 (alpha * db)
 
-    def train(self, X, Y, iterations=5000, alpha=0.05, verbose=True, graph=True, step=100):
+    def train(self, X, Y, iterations=5000,
+              alpha=0.05, verbose=True, graph=True, step=100):
         """Trains the neural network __W1, __b1, __A1, __W2, __b2, and __A2
             Arguments:
                 X: input neuron, shape (nx, m)
@@ -187,7 +188,7 @@ class DeepNeuralNetwork():
         if '.pkl' not in filename:
             filename += '.pkl'
         # open the file for writing
-        fileObject = open(filename,'wb')
+        fileObject = open(filename, 'wb')
         # this writes the object a to the
         # file named 'testfile'
         pickle.dump(self, fileObject)
@@ -204,9 +205,9 @@ class DeepNeuralNetwork():
         """
         try:
             # we open the file for reading
-            fileObject = open(filename,'rb')
+            fileObject = open(filename, 'rb')
             # load the object from the file into var b
             fileOpen = pickle.load(fileObject)
             return fileOpen
-        except:
+        except FileNotFoundError:
             return None
