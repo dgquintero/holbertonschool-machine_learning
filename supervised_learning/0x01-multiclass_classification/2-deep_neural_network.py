@@ -205,7 +205,7 @@ class DeepNeuralNetwork():
         """
         try:
             # we open the file for reading
-            fileObject = open(filename, 'r'):
+            fileObject = open(filename, 'r')
             # load the object from the file into fileOpen
             fileOpen = pickle.load(fileObject)
             return fileOpen
