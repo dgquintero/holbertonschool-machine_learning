@@ -179,35 +179,51 @@ class DeepNeuralNetwork():
             plt.show()
         return self.evaluate(X, Y)
 
+#    def save(self, filename):
+#        """
+#        Saves the instance object to a file in pickle format
+#        Arguments:
+#            filename: file which object should be saved
+#        """
+#        if '.pkl' not in filename:
+#            filename += '.pkl'
+#        # open the file for writing
+#        fileObject = open(filename, 'wb')
+#        # this writes the object a to 'filename'
+#        pickle.dump(self, fileObject)
+#        # here we close the fileObject
+#        fileObject.close()
+
+#    @staticmethod
+#    def load(filename):
+#        """
+#        Loads a pickled DeepNeuralNetwork object
+#        Arguments:
+#            filename: file which object should be loaded
+#        Returns: the loaded object, or None
+#                if filename doesn’t exist
+#        """
+#        try:
+#            # we open the file for reading
+#            fileObject = open(filename, 'rb')
+#            # load the object from the file into fileOpen
+#            fileOpen = pickle.load(fileObject)
+#            return fileOpen
+#        except pickle.PickleError:
+#           return None
+
     def save(self, filename):
-        """
-        Saves the instance object to a file in pickle format
-        Arguments:
-            filename: file which object should be saved
-        """
-        if '.pkl' not in filename:
-            filename += '.pkl'
-        # open the file for writing
-        fileObject = open(filename, 'wb')
-        # this writes the object a to 'filename'
-        pickle.dump(self, fileObject)
-        # here we close the fileObject
-        fileObject.close()
+        """ Saves the instance object to a file in pickle format. """
+        if not filename.endswith(".pkl"):
+            filename += ".pkl"
+        with open(filename, 'wb') as f:
+            pickle.dump(self, f)
 
     @staticmethod
     def load(filename):
-        """
-        Loads a pickled DeepNeuralNetwork object
-        Arguments:
-            filename: file which object should be loaded
-        Returns: the loaded object, or None
-                if filename doesn’t exist
-        """
+        """ Loads a pickled DeepNeuralNetwork object. """
         try:
-            # we open the file for reading
-            fileObject = open(filename, 'rb')
-            # load the object from the file into fileOpen
-            fileOpen = pickle.load(fileObject)
-            return fileOpen
+            with open(filename, 'rb') as f:
+                return pickle.load(f)
         except FileNotFoundError:
             return None
