@@ -189,11 +189,9 @@ class DeepNeuralNetwork():
             filename += '.pkl'
 
         # open the file for writing
-        fileObject = open(filename, 'wb')
-        # this writes the object a to 'filename'
-        pickle.dump(self, fileObject)
-        # here we close the fileObject
-        fileObject.close()
+        with open(filename, 'wb') as fileObject:
+            # this writes the object a to 'filename'
+            pickle.dump(self, fileObject)
 
     @staticmethod
     def load(filename):
