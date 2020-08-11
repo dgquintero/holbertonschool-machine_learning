@@ -2,6 +2,7 @@
 """defines a DeepNeuralNetwork"""
 import numpy as np
 import matplotlib.pyplot as plt
+import pickle
 
 
 class DeepNeuralNetwork():
@@ -76,7 +77,12 @@ class DeepNeuralNetwork():
             b_i = "b" + str(i + 1)
             Za = np.matmul(weights[w_i], cache["A" + str(i)])
             Z = Za + weights[b_i]
-            cache["A" + str(i + 1)] = 1 / (1 + np.exp(-Z))
+            if i == self.__L - 1:
+                # softmax activation function
+                t = np.exp(Z)
+                cache["A" + str(i + 1)] = (t/np.sum(t, axis=0, keepdims=True))
+            else:
+                cache["A" + str(i + 1)] = 1 / (1 + np.exp(-Z))
         return cache["A" + str(self.__L)], cache
 
     def cost(self, Y, A):
@@ -90,10 +96,8 @@ class DeepNeuralNetwork():
             Returns: The cost
         """
         m = Y.shape[1]
-        cost = - (1 / m) * np.sum(
-            np.multiply(
-                Y, np.log(A)) + np.multiply(
-                1 - Y, np.log(1.0000001 - A)))
+        # cross entropy
+        cost = - (1 / m) * np.sum(Y * np.log(A))
         return cost
 
     def evaluate(self, X, Y):
@@ -133,7 +137,8 @@ class DeepNeuralNetwork():
             self.__weights['b'+str(i)] = self.__weights['b'+str(i)] -\
                 (alpha * db)
 
-    def train(self, X, Y, iterations=5000, alpha=0.05, verbose=True, graph=True, step=100):
+    def train(self, X, Y, iterations=5000,
+              alpha=0.05, verbose=True, graph=True, step=100):
         """Trains the neural network __W1, __b1, __A1, __W2, __b2, and __A2
             Arguments:
                 X: input neuron, shape (nx, m)
@@ -176,3 +181,35 @@ class DeepNeuralNetwork():
             plt.title("Training Cost")
             plt.show()
         return self.evaluate(X, Y)
+
+    def save(self, filename):
+        """
+        Saves the instance object to a file in pickle format
+        Arguments:
+            filename: file which object should be saved
+        """
+        if '.pkl' not in filename:
+            filename += '.pkl'
+
+        # open the file for writing
+        with open(filename, 'wb') as fileObject:
+            # this writes the object a to 'filename'
+            pickle.dump(self, fileObject)
+
+    @staticmethod
+    def load(filename):
+        """
+        Loads a pickled DeepNeuralNetwork object
+        Arguments:
+            filename: file which object should be loaded
+        Returns: the loaded object, or None
+                if filename doesn’t exist
+        """
+        try:
+            # we open the file for reading
+            with open(filename, 'rb') as fileObject:
+                # load the object from the file into fileOpen
+                fileOpen = pickle.load(fileObject)
+            return fileOpen
+        except FileNotFoundError:
+            return None
