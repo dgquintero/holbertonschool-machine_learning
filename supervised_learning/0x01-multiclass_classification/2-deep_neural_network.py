@@ -164,12 +164,11 @@ class DeepNeuralNetwork():
         for i in range(iterations + 1):
             self.forward_prop(X)
             cost = self.cost(Y, self.__cache["A" + str(self.__L)])
-            if i % step == 0 or i == iterations:
+
+            if verbose is True and i % step == 0:
+                print("Cost after {} iterations: {}".format(i, cost))
                 costs.append(cost)
                 steps.append(i)
-                if verbose:
-                    print("Cost after {} iterations: {}".format(i, cost))
-
             if i < iterations:
                 self.gradient_descent(Y, self.__cache, alpha)
         if graph is True:
