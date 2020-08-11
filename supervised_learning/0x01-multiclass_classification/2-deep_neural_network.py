@@ -206,9 +206,9 @@ class DeepNeuralNetwork():
         """
         try:
             # we open the file for reading
-            fileObject = open(filename, 'rb')
-            # load the object from the file into var b
-            fileOpen = pickle.load(fileObject)
+            with open(filename, 'rb') as fileObject:
+                # load the object from the file into var b
+                fileOpen = pickle.load(fileObject)
             return fileOpen
         except FileNotFoundError:
             return None
