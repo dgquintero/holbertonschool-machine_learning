@@ -189,8 +189,7 @@ class DeepNeuralNetwork():
             filename += '.pkl'
         # open the file for writing
         fileObject = open(filename, 'wb')
-        # this writes the object a to the
-        # file named 'testfile'
+        # this writes the object a to 'filename'
         pickle.dump(self, fileObject)
         # here we close the fileObject
         fileObject.close()
@@ -206,9 +205,9 @@ class DeepNeuralNetwork():
         """
         try:
             # we open the file for reading
-            with open(filename, 'rb') as fileObject:
-                # load the object from the file into var b
-                fileOpen = pickle.load(fileObject)
+            fileObject = open(filename, 'r'):
+            # load the object from the file into fileOpen
+            fileOpen = pickle.load(fileObject)
             return fileOpen
         except FileNotFoundError:
             return None
