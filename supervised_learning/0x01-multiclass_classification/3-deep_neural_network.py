@@ -150,35 +150,37 @@ class DeepNeuralNetwork():
                 step: Integer with
             Return: evaluation of the training data after iterations
         """
-        if type(iterations) is not int:
+        if type(iterations) != int:
             raise TypeError("iterations must be an integer")
-        if iterations < 0:
-            raise ValueError("alpha must be positive")
-        if type(alpha) is not float:
+        if iterations <= 0:
+            raise ValueError("iterations must be a positive integer")
+        if type(alpha) != float:
             raise TypeError("alpha must be a float")
-        if alpha < 0:
+        if alpha <= 0:
             raise ValueError("alpha must be positive")
-        if type(step) is not int:
-            raise TypeError("step must be an integer")
-        if step < 0 or step > iterations:
-            raise ValueError("step must be positive and <= iterations")
-        costs = []
+        if verbose is True or graph is True:
+            if type(step) != int:
+                raise TypeError("step must be an integer")
+            if step <= 0 or step > iterations:
+                raise ValueError("step must be positive and <= iterations")
+
         steps = []
+        costs = []
         for i in range(iterations + 1):
             self.forward_prop(X)
-            cost = self.cost(Y, self.__cache["A" + str(self.__L)])
-
-            if verbose and i % step == 0:
-                print("Cost after {} iterations: {}".format(i, cost))
+            cost = self.cost(Y, self.__cache["A"+str(self.__L)])
+            if i % step == 0 or i == iterations:
                 costs.append(cost)
                 steps.append(i)
+                if verbose is True:
+                    print("Cost after {} iterations: {}".format(i, cost))
             if i < iterations:
                 self.gradient_descent(Y, self.__cache, alpha)
         if graph is True:
-            plt.plot(np.squeeze(steps), np.squeeze(costs))
-            plt.ylabel("cost")
-            plt.xlabel("iteration")
-            plt.title("Training Cost")
+            plt.plot(np.array(steps), np.array(costs))
+            plt.xlabel('iteration')
+            plt.ylabel('cost')
+            plt.suptitle("Training Cost")
             plt.show()
         return self.evaluate(X, Y)
 
