@@ -66,6 +66,12 @@ class DeepNeuralNetwork():
          Private instance getter attr
         """
         return self.__weights
+    @property
+    def activation(self):
+        """
+         Private instance getter attr
+        """
+        return self.__activation
 
     def forward_prop(self, X):
         """public method that calculates the forward propagation
