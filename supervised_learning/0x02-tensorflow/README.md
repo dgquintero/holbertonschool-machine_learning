@@ -3,7 +3,7 @@
 
 At the end of this project, you are expected to be able to explain to anyone, without the help of Google:
 
-## General
+## General
 
 - What is tensorflow?
 - What is a session? graph?
@@ -19,7 +19,7 @@ At the end of this project, you are expected to be able to explain to anyone, wi
 
 ## Requirements
 
-### General
+## General
 
 - Allowed editors: vi, vim, emacs
 - All your files will be interpreted/compiled on Ubuntu 16.04 LTS using python3 (version 3.5)
