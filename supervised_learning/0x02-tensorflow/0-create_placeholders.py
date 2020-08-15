@@ -12,6 +12,6 @@ def create_placeholders(nx, classes):
         x: input data to the NN
         y: one-hot labels for the input data
     """
-    x = tf.placeholder(tf.float32, shape=[None, nx], name='x')
-    y = tf.placeholder(tf.float32, shape=[None, classes], name='y')
+    x = tf.placeholder("float", shape=[None, nx], name='x')
+    y = tf.placeholder("float", shape=[None, classes], name='y')
     return x, y
