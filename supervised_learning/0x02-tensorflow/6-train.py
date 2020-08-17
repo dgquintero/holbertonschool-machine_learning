@@ -46,10 +46,10 @@ def train(X_train, Y_train, X_valid, Y_valid, layer_sizes,
     saver = tf.train.Saver()
     # Start the session to compute the tensorflow graph
     with tf.Session() as sess:
-        
+
         # Run the initialization
         sess.run(init)
-        
+
         # Do the training loop
         for epoch in range(iterations):
             t_cost = sess.run(loss, feed_dict={x: X_train, y: Y_train})
@@ -65,5 +65,3 @@ def train(X_train, Y_train, X_valid, Y_valid, layer_sizes,
             if epoch < iterations:
                 sess.run(train_opti, feed_dict={x: X_train, y: Y_train})
         return saver.save(sess, save_path)
-
-
