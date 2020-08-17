@@ -51,7 +51,7 @@ def train(X_train, Y_train, X_valid, Y_valid, layer_sizes,
         sess.run(init)
 
         # Do the training loop
-        for epoch in range(iterations):
+        for epoch in range(iterations + 1):
             t_cost = sess.run(loss, feed_dict={x: X_train, y: Y_train})
             t_accuracy = sess.run(accuracy, feed_dict={x: X_train, y: Y_train})
             v_cost = sess.run(loss, feed_dict={x: X_valid, y: Y_valid})
