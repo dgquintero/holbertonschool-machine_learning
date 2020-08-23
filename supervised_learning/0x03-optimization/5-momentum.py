@@ -15,6 +15,6 @@ def update_variables_momentum(alpha, beta1, var, grad, v):
         v: is the previous first moment of var
     Returns: the updated variable and the new moment, respectively
     """
-    V = (beta * v) + ((1 - beta1) * grad)
+    V = (beta1 * v) + ((1 - beta1) * grad)
     W = var - (alpha * V)
     return W, V
