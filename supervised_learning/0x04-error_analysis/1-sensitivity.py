@@ -13,6 +13,6 @@ def sensitivity(confusion):
     Returns: a ndarray shape(classes,) with the sensitivity of each class
     """
     true_pos = np.diag(confusion)
-    false_neg = np.sum(confusion, axis=1) - TP
+    false_neg = np.sum(confusion, axis=1) - true_pos
     sensitivity = true_pos / (true_pos + false_neg)
     return sensitivity
