@@ -8,7 +8,8 @@ def sensitivity(confusion):
     """
     Calculates the sensitivity for each class in a confusion matrix
     Arguments:
-        confusion: (classes, classes) where row indices represent the correct labels and column
+        confusion: (classes, classes) where row indices represent
+            the correct labels and column
         indices represent the predicted labels
     Returns: a ndarray shape(classes,) with the sensitivity of each class
     """
