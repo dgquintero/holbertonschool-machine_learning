@@ -13,6 +13,5 @@ def create_momentum_op(loss, alpha, beta1):
         loss: is the loss of the network
     Returns: the momentum optimization operation
     """
-    optimizer = tf.train.MomentumOptimizer(alpha, beta1)
-    optimizer.minimize(loss)
+    optimizer = tf.train.MomentumOptimizer(alpha, beta1).minimize(loss)
     return optimizer
