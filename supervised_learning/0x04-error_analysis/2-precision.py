@@ -8,7 +8,8 @@ def precision(confusion):
     """
     Calculates the precision for each class in a confusion matrix
     Arguments:
-        confusion: (classes, classes) where row indices represent the correct labels and column
+        confusion: (classes, classes) where row indices represent
+        the correct labels and column
         indices represent the predicted labels
     Returns: a ndarray shape(classes,) with the precision of each class
     """
@@ -16,6 +17,6 @@ def precision(confusion):
     false_neg = np.sum(confusion, axis=1) - true_pos
     false_pos = np.sum(confusion, axis=0) - true_pos
 
-    precision = np.sum(true_pos / (true_pos + false_neg))
+    precision = true_pos / (true_pos + false_neg)
 
     return precision
