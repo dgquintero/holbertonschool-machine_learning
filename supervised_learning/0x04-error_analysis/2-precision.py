@@ -17,6 +17,6 @@ def precision(confusion):
     false_neg = np.sum(confusion, axis=1) - true_pos
     false_pos = np.sum(confusion, axis=0) - true_pos
 
-    precision = true_pos / (true_pos + false_neg)
-
+    precision = true_pos / (true_pos + false_pos)
+    # PPV = TP/(TP+FP)
     return precision
