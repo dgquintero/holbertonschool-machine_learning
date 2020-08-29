@@ -22,4 +22,3 @@ def dropout_create_layer(prev, n, activation, keep_prob):
                              kernel_regularizer=regularizer,
                              name='layer')
     return tensor(prev)
-
