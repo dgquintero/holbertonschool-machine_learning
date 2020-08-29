@@ -1,4 +1,4 @@
-""" l2_reg_cost function"""
+""" l2_reg_gradient_descent function"""
 
 import numpy as np
 

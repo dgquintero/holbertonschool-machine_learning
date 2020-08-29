@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-""" l2_reg_cost function"""
+""" dropout_gradient_descent function"""
 
 import numpy as np
 

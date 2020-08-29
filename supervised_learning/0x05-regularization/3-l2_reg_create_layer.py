@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-""" l2_reg_cost function"""
+""" l2_reg_create_layer function"""
 
 import tensorflow as tf
 
