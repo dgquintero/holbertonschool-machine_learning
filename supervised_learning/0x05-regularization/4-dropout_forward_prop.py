@@ -13,7 +13,7 @@ def dropout_forward_prop(X, weights, L, keep_prob):
         L: the number of layers in the network
         keep_prob: is the probability that a node will be kept
     Returns: dictionary containing the outputs of each layer
-        and the dropout mask used on each layer 
+        and the dropout mask used on each layer
     """
     cache = {}
     cache['A0'] = X
@@ -25,10 +25,10 @@ def dropout_forward_prop(X, weights, L, keep_prob):
         dropout = np.random.rand(Z.shape[0], Z.shape[1])
         dropout = np.where(dropout < keep_prob, 1, 0)
 
-        if layer == L -1:
+        if layer == L - 1:
             softmax = np.exp(Z)
-            cache["A" + str(layer +1)] = (softmax / np.sum(softmax, axis=0,
-                                                           keepdims=True))
+            cache["A" + str(layer + 1)] = (softmax / np.sum(softmax, axis=0,
+                                                            keepdims=True))
         else:
             tanh = np.tanh(Z)
             cache["A" + str(layer + 1)] = tanh
