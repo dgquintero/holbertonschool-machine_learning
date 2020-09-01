@@ -11,5 +11,5 @@ def one_hot(labels, classes=None):
             classes
         Returns: the one-hot matrix
     """
-    one_hot = tf.keras.utils.to_categorical(labels, num_classes=classes)
+    one_hot = K.utils.to_categorical(labels, num_classes=classes)
     return one_hot
