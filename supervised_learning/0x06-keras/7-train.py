@@ -22,7 +22,7 @@ def train_model(network, data, labels, batch_size, epochs,
                 should be use
             patience: is the patience used for early stopping
                 every epoch
-            learning_rate_decay: boolean that indicates whether learning 
+            learning_rate_decay: boolean that indicates whether learning
                 rate decay should be used
             alpha: initial lr
             decay_rate: decay rate
@@ -32,13 +32,12 @@ def train_model(network, data, labels, batch_size, epochs,
     def scheduler(epoch):
         """Function to get the lr of each epoch"""
         return alpha / (1 + decay_rate * epoch)
-    
+
     callback = []
     ES = K.callbacks.EarlyStopping(monitor='val_loss',
                                    mode='min',
                                    patience=patience)
     LRD = K.callbacks.LearningRateScheduler(scheduler, verbose=1)
-
 
     if validation_data and early_stopping:
         callback.append(ES)
