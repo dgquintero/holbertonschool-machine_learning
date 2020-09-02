@@ -28,4 +28,4 @@ def load_config(filename):
     """
     with open(filename, 'r') as f:
         net_config = f.read()
-    return K.models.model_from_json(network_config)
+    return K.models.model_from_json(net_config)
