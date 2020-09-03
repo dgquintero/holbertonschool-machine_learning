@@ -132,3 +132,5 @@ dmypy.json
 *.pkl
 2-output.pkl
 data/
+
+*.h5
