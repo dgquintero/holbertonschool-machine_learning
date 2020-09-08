@@ -45,13 +45,13 @@ def convolve_channels(images, kernel, padding='same', stride=(1, 1)):
 
     image_p = np.pad(images, pad_width=pad, mode='constant')
 
-    output_conv = np.zeros((m, new_h, new_w))
+    output_c = np.zeros((m, new_h, new_w))
 
     for i in range(new_h):
         for j in range(new_w):
             x = i * sh
             y = j * sw
             image = image_p[:, x:x+kh, y:y+kw, :]
-            output_conv[:, i, j] = np.multiply(image, kernel).sum(axis=(1, 2, 3))
+            output_c[:, i, j] = np.multiply(image, kernel).sum(axis=(1, 2, 3))
 
-    return output_conv
+    return output_c
