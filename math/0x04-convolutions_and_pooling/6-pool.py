@@ -37,7 +37,7 @@ def pool(images, kernel_shape, stride, mode='max'):
         pooling = np.average
 
     new_h = int(((h - kh) / sh) + 1)
-    new_w = int(((w - kh) / sw) + 1)
+    new_w = int(((w - kw) / sw) + 1)
 
     output_c = np.zeros((m, new_h, new_w, c))
 
