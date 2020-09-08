@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-""" convolve function"""
+""" pool function"""
 import numpy as np
 
 
@@ -11,7 +11,7 @@ def pool(images, kernel_shape, stride, mode='max'):
             h: the height in pixels of the images
             w: the width in pixels of the images
             c: is the number of channels in the image
-        kernel_shape: shape (kh, kw) containing the kernel shape for the pooling
+        kernel_shape: (kh, kw) containing the kernel shape for the pooling
             kh: the height of the kernel
             kw: the width of the kernel
         stride:
@@ -33,7 +33,7 @@ def pool(images, kernel_shape, stride, mode='max'):
 
     if mode == 'max':
         pooling = np.max
-    else: 
+    else:
         pooling = np.average
 
     new_h = int(((h - kh) / sh) + 1)
