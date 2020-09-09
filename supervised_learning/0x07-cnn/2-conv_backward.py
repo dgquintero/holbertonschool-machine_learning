@@ -48,7 +48,7 @@ def conv_backward(dZ, A_prev, W, b, padding="same", stride=(1, 1)):
     # Initialize dA_prev, dW, db with the correct shapes
     dA_prev = np.zeros(A_prev.shape)
     dW = np.zeros(W.shape)
-    db = np.zeros((1, 1, 1, c_new))
+    db = np.sum(dZ, axis=(0, 1, 2), keepdims=True)
 
     # create an image Pad A_prev and dA_prev
     pad = ((0, 0), (ph, ph), (pw, pw), (0, 0))
