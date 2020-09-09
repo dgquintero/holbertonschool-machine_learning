@@ -25,7 +25,7 @@ def pool_forward(A_prev, kernel_shape, stride=(1, 1), mode='max'):
     (m, h_prev, w_prev, c_prev) = A_prev.shape
 
     # Retrieve information from "kernel_shape"
-    kh, kw = kernel_shape
+    (kh, kw) = kernel_shape
 
     # Retrieve information from "stride"
     sh, sw = stride
@@ -45,11 +45,11 @@ def pool_forward(A_prev, kernel_shape, stride=(1, 1), mode='max'):
             horiz_start = w * sw
             horiz_end = horiz_start + kw
             # Use the corners to define the (3D) slice of a_prev_pad
-            img_slice = A_prev[:, vert_start:vert_end, horiz_start:horiz_end]
+            a_prev = A_prev[:, vert_start:vert_end, horiz_start:horiz_end]
             # compute the poolong operation
             if mode == "max":
-                conv[:, h, w] = np.max(img_slice, axis=(1, 2))
-            elif mode == "average":
-                conv[:, h, w] = np.mean(img_slice, axis=(1, 2))
+                conv[:, h, w] = np.max(a_prev, axis=(1, 2))
+            elif mode == "avg":
+                conv[:, h, w] = np.mean(a_prev, axis=(1, 2))
 
     return conv
