@@ -4,7 +4,7 @@ import numpy as np
 
 
 def pool_forward(A_prev, kernel_shape, stride=(1, 1), mode='max'):
-    """ 
+    """
     Implements the forward pass of the pooling layer
     Arguments:
         A_prev: (m, h_prev, w_prev, c_prev) output of the previous layer
@@ -21,7 +21,7 @@ def pool_forward(A_prev, kernel_shape, stride=(1, 1), mode='max'):
         mode: string containing either max or avg (maximun o avg pooling)
     Returns: output the pooling layer
     """
-    # Retrieve dimensions from A_prev's shape  
+    # Retrieve dimensions from A_prev's shape
     (m, h_prev, w_prev, c_prev) = A_prev.shape
 
     # Retrieve information from "kernel_shape"
@@ -44,8 +44,6 @@ def pool_forward(A_prev, kernel_shape, stride=(1, 1), mode='max'):
             vert_end = vert_start + kh
             horiz_start = w * sw
             horiz_end = horiz_start + kw
-
-
             # Use the corners to define the (3D) slice of a_prev_pad
             img_slice = A_prev[:, vert_start:vert_end, horiz_start:horiz_end]
             # compute the poolong operation
