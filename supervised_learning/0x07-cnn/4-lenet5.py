@@ -19,20 +19,19 @@ def lenet5(x, y):
     init = tf.contrib.layers.variance_scaling_initializer()
     conv1 = tf.layers.Conv2d(
         inputs=x,
-        filters=6, # Number of filters.
-        kernel_size=5, # Size of each filter is 5x5.
-        padding="valid", # No padding is applied to the input.
+        filters=6,   # Number of filters.
+        kernel_size=5,    # Size of each filter is 5x5.
+        padding="valid",     # No padding is applied to the input.
         activation=tf.nn.relu
         kernel_initializer=init)
 
     # Pooling Layer #1
     # Sampling half the output of previous layer
-    # Output: 14 * 14 * 6     
+    # Output: 14 * 14 * 6
     pool1 = tf.layers.MaxPooling2D(
         inputs=conv1,
         pool_size=[2, 2],
         strides=2)
-    
     # Convolutional Layer #2
     # Output: 10 * 10 * 16
     conv2 = tf.layers.Conv2D(
@@ -51,7 +50,8 @@ def lenet5(x, y):
         strides=2
     )
 
-    # Reshaping output into a single dimention array for input to fully connected layer
+    # Reshaping output into a single dimention array for input
+    # to fully connected layer
     pool2_flat = tf.layers.Flatten(inputs=pool2)
 
     # Fully connected layer #1: Has 120 neurons
