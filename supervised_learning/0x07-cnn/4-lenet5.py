@@ -20,7 +20,7 @@ def lenet5(x, y):
     conv1 = tf.layers.Conv2D(
         filters=6,   # Number of filters.
         kernel_size=5,    # Size of each filter is 5x5.
-        padding="valid",     # No padding is applied to the input.
+        padding="same",     # No padding is applied to the input.
         activation=tf.nn.relu,
         kernel_initializer=init)(x)
 
@@ -72,7 +72,7 @@ def lenet5(x, y):
 
     # For testing and prediction
     correct_prediction = tf.equal(tf.argmax(y, 1), tf.argmax(y_predict, 1))
-    accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
+    accuracy = tf.reduce_mean(tf.cast(correct_prediction, "float"))
 
     y_predict = tf.nn.softmax(y_predict)
 
