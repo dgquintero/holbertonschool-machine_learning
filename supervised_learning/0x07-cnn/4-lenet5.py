@@ -72,7 +72,7 @@ def lenet5(x, y):
 
     # For testing and prediction
     correct_prediction = tf.equal(tf.argmax(y, 1), tf.argmax(y_predict, 1))
-    accuracy = tf.reduce_mean(tf.cast(correct_prediction, "float"))
+    accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
 
     y_predict = tf.nn.softmax(y_predict)
 
