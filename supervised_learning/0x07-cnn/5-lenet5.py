@@ -57,7 +57,8 @@ def lenet5(X):
         kernel_initializer=init)(dense1)
     # Output layer, 10 neurons for each digit
     logits = K.layers.Dense(units=10,
-                             kernel_initializer=init)(dense2)
+                            kernel_initializer=init,
+                            activation='softmax')(dense2)
     # model
     model = K.models.Model(X, logits)
 
