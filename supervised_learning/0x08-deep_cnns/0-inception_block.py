@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 """inception_block function"""
 
 import tensorflow.keras as K
@@ -48,6 +49,6 @@ def inception_block(A_prev, filters):
     poolP = K.layers.Conv2D(filters=FPP, kernel_size=1, padding='same',
                             activation='relu', kernel_initializer=init)(poolP)
 
-    mid_l = K.layers.concatenate([conv1x1, conv3x3, conv5x5, poolP], axis = 3)
+    mid_l = K.layers.concatenate([conv1x1, conv3x3, conv5x5, poolP])
 
     return mid_l
