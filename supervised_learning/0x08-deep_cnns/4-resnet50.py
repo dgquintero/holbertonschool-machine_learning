@@ -32,7 +32,7 @@ def resnet50():
     id_conv3_2 = identity_block(id_conv3_1, [128, 128, 512])
     id_conv3_3 = identity_block(id_conv3_2, [128, 128, 512])
     # 3rd projection block
-    pr_conv3 = projection_block(idconv3_3, [256, 256, 1024])
+    pr_conv3 = projection_block(id_conv3_3, [256, 256, 1024])
     # 3rd identity blocks
     id_conv4_1 = identity_block(pr_conv3, [256, 256, 1024])
     id_conv4_2 = identity_block(id_conv4_1, [256, 256, 1024])
