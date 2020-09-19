@@ -23,7 +23,7 @@ def resnet50():
     # 1st projection block
     pr_c1 = projection_block(pool_1, [64, 64, 256], 1)
     # 1st identity blocks
-    id_conv1 = identity_bloc(pr_c1, [64, 64, 256])
+    id_conv1 = identity_block(pr_c1, [64, 64, 256])
     id_conv2 = identity_block(id_conv1, [64, 64, 256])
     # 2nd projection block
     pr_conv2 = projection_block(id_conv2, [128, 128, 512])
