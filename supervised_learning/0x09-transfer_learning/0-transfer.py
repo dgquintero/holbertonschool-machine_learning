@@ -48,7 +48,6 @@ if __name__ == "__main__":
     FC = K.layers.Dense(10, activation='softmax')(FC)
     model = K.models.Model(inputs=inputs, outputs=FC)
 
-    # model.summary()
     # REGULARIZATION AND OPTIMIZATION
     lrr = K.callbacks.ReduceLROnPlateau(monitor='val_acc',
                                         factor=.01,
