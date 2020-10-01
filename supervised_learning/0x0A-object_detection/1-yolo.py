@@ -2,6 +2,7 @@
 """Initialize YOLOv3 class"""
 
 import tensorflow.keras as K
+import numpy as np
 
 
 class Yolo:
@@ -29,7 +30,11 @@ class Yolo:
 
     def process_outputs(self, outputs, image_size):
         """
+
         Argumnets:
             outputs: predictions from the Darknet model for a single image
-            
+            image_size. ndarray containing the image original size
+        Returns: (boxes, box_confidences, box_class_probs)
         """
+        boxes = [pred[:, :, :, 0:4]for pred in outputs]
+        for 
