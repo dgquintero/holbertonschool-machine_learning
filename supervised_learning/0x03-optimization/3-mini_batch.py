@@ -1,62 +1,86 @@
 #!/usr/bin/env python3
-"""shuffle_data function"""
+"""train a model using mini batch"""
 
-import numpy as np
+
 import tensorflow as tf
-
-
 shuffle_data = __import__('2-shuffle_data').shuffle_data
 
-def train_mini_batch(X_train, Y_train, X_valid, Y_valid, batch_size=32, epochs=5, load_path="/tmp/model.ckpt", save_path="/tmp/model.ckpt"):
+
+def train_mini_batch(X_train, Y_train, X_valid, Y_valid,
+                     batch_size=32, epochs=5, load_path="/tmp/model.ckpt",
+                     save_path="/tmp/model.cpkt"):
     """
-    trains a loaded neural network model using mini-batch gradient descent
-    Arguments:
-        X_train: training input data
-        Y_train: containing the training labels
-        X_valid: containing the validation input data
-        Y_valid: containing the validation labels
-        batch_size: is the number of data points in a batch
-        epochs: number of iterations to train over
+    Function to train a DNN using mini_batch gradient descent algorithm
+    Args:
+        X_train: numpy.ndarray of shape (m, 784)
+                 contains training data
+        Y_train: one-hot numpy.ndarray of shape (m, 10)
+                 contains training labels
+        X_valid: numpy.ndarray of shape (m, 784)
+                 contains validation data
+        Y_valid: one-hot numpy.ndarray of shape (m, 10)
+                 contains validation labels
+        batch_size: type int number of data points in a batch
+        epochs: type int number of times the training should pass
+                through the whole dataset
         load_path: path from which to load the model
-        save_path: designates where to save the model
-    Returns: the path where the model was saved
+        save_path: path to where the model should be saved after training
+    Returns: path where the model was saved
     """
-    # create placeholders for input
-    x, y = create_placeholders(X_train.shape[1], Y_train.shape[1])
-    # graph's collection
-    tf.add_to_collection('x', x)
-    tf.add_to_collection('y', y)
-    y_pred = forward_prop(x, layer_sizes, activations)
-    tf.add_to_collection('y_pred', y_pred)
-    accuracy = calculate_accuracy(y, y_pred)
-    tf.add_to_collection('accuracy', accuracy)
-    loss = calculate_loss(y, y_pred)
-    tf.add_to_collection('loss', loss)
-    # train fuction
-    train_opti = create_train_op(loss, alpha)
-    tf.add_to_collection('train_opti', train_opti)
 
-    init = tf.global_variables_initializer()
-
-    saver = tf.train.Saver()
-    # Start the session to compute the tensorflow graph
     with tf.Session() as sess:
+        saver = tf.train.import_meta_graph(load_path + ".meta")
+        saver.restore(sess, load_path)
 
-        # Run the initialization
-        sess.run(init)
+        x = tf.get_collection("x")[0]
+        y = tf.get_collection("y")[0]
+        accuracy = tf.get_collection("accuracy")[0]
+        loss = tf.get_collection("loss")[0]
+        train_op = tf.get_collection("train_op")[0]
 
-        # Do the training loop
-        for epoch in range(iterations + 1):
-            t_cost = sess.run(loss, feed_dict={x: X_train, y: Y_train})
-            t_accuracy = sess.run(accuracy, feed_dict={x: X_train, y: Y_train})
-            v_cost = sess.run(loss, feed_dict={x: X_valid, y: Y_valid})
-            v_accuracy = sess.run(accuracy, feed_dict={x: X_valid, y: Y_valid})
-            if epoch % 100 == 0 or epoch == iterations:
-                print("After {} iterations:".format(epoch))
-                print("\tTraining Cost: {}".format(t_cost))
-                print("\tTraining Accuracy: {}".format(t_accuracy))
-                print("\tValidation Cost: {}".format(v_cost))
-                print("\tValidation Accuracy: {}".format(v_accuracy))
-            if epoch < iterations:
-                sess.run(train_opti, feed_dict={x: X_train, y: Y_train})
-        return saver.save(sess, save_path)
+        m = X_train.shape[0]
+        if (m % batch_size) == 0:
+            num_minibatches = int(m / batch_size)
+            check = 1
+        else:
+            num_minibatches = int(m / batch_size) + 1
+            check = 0
+
+        for epoch in range(epochs + 1):
+            feed_train = {x: X_train, y: Y_train}
+            feed_valid = {x: X_valid, y: Y_valid}
+            train_cost = sess.run(loss, feed_dict=feed_train)
+            train_accuracy = sess.run(accuracy, feed_dict=feed_train)
+            valid_cost = sess.run(loss, feed_dict=feed_valid)
+            valid_accuracy = sess.run(accuracy, feed_dict=feed_valid)
+
+            print("After {} epochs:".format(epoch))
+            print("\tTraining Cost: {}".format(train_cost))
+            print("\tTraining Accuracy: {}".format(train_accuracy))
+            print("\tValidation Cost: {}".format(valid_cost))
+            print("\tValidation Accuracy: {}".format(valid_accuracy))
+
+            if epoch < epochs:
+                Xs, Ys = shuffle_data(X_train, Y_train)
+
+                for step_number in range(num_minibatches):
+                    start = step_number * batch_size
+                    end = (step_number + 1) * batch_size
+                    if check == 0 and step_number == num_minibatches - 1:
+                        x_minbatch = Xs[start::]
+                        y_minbatch = Ys[start::]
+                    else:
+                        x_minbatch = Xs[start:end]
+                        y_minbatch = Ys[start:end]
+
+                    feed_mini = {x: x_minbatch, y: y_minbatch}
+                    sess.run(train_op, feed_dict=feed_mini)
+
+                    if ((step_number + 1) % 100 == 0) and (step_number != 0):
+                        step_cost = sess.run(loss, feed_dict=feed_mini)
+                        step_accuracy = sess.run(accuracy, feed_dict=feed_mini)
+                        print("\tStep {}:".format(step_number + 1))
+                        print("\t\tCost: {}".format(step_cost))
+                        print("\t\tAccuracy: {}".format(step_accuracy))
+        save_path = saver.save(sess, save_path)
+    return save_path
