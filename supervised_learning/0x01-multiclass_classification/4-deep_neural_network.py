@@ -223,10 +223,10 @@ class DeepNeuralNetwork():
                 if filename doesn’t exist
         """
         try:
-            # we open the file for reading
-            with open(filename, 'rb') as fileObject:
-                # load the object from the file into fileOpen
-                fileOpen = pickle.load(fileObject)
-            return fileOpen
+            # open the file for reading (r) in binary (b)
+            with open(filename, 'rb') as f:
+                # load the object from the file
+                obj = pickle.load(f)
+            return obj
         except FileNotFoundError:
             return None
