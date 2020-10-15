@@ -16,35 +16,38 @@ class DeepNeuralNetwork():
             activation: type of activation function using in the hidden layer
         Return: (weight, bias, Aactivate output)
         """
-        if type(nx) is not int:
+        if not isinstance(nx, int):
             raise TypeError("nx must be an integer")
         if nx < 1:
             raise ValueError("nx must be a positive integer")
-        if type(layers) is not list:
+        if not isinstance(layers, list):
             raise TypeError("layers must be a list of positive integers")
         if len(layers) == 0:
-            raise TypeError("layers must be a list of positive integers")
-        if activation != 'sig' or activation != 'tanh':
+            raise TypeError('layers must be a list of positive integers')
+        if activation != 'sig' and activation != 'tanh':
             raise ValueError("activation must be 'sig' or 'tanh'")
-
+        self.nx = nx
+        self.layers = layers
         self.__L = len(layers)
+        self.__activation = activation
         self.__cache = {}
         self.__weights = {}
-        self.__activation = activation
-        for i in range(self.L):
-            if layers[i] < 1 or type(layers[i]) is not int:
-                raise TypeError("layers must be a list of positive integers")
 
-            w_i = "W" + str(i + 1)
-            b_i = "b" + str(i + 1)
+        for i in range(self.L):
+            if not isinstance(layers[i], int) or layers[i] < 1:
+                raise TypeError("layers must be a list of positive integers")
+            W_key = "W{}".format(i + 1)
+            b_key = "b{}".format(i + 1)
+
+            self.weights[b_key] = np.zeros((layers[i], 1))
 
             if i == 0:
-                self.__weights[w_i] = np.random.randn(layers[i], nx)\
-                                            * np.sqrt(2 / nx)
-            if i > 0:
-                self.__weights[w_i] = np.random.randn(layers[i], layers[i-1])\
-                    * np.sqrt(2 / layers[i - 1])
-            self.__weights[b_i] = np.zeros((layers[i], 1))
+                f = np.sqrt(2 / nx)
+                self.__weights['W1'] = np.random.randn(layers[i], nx) * f
+            else:
+                f = np.sqrt(2 / layers[i - 1])
+                h = np.random.randn(layers[i], layers[i - 1]) * f
+                self.__weights[W_key] = h
 
     @property
     def L(self):
